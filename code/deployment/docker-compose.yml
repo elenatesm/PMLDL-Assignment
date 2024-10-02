@@ -1,0 +1,23 @@
+networks:
+  net:
+    driver: bridge
+
+
+services:
+  api:
+    build: ./api
+    container_name: api
+    ports:
+      - "5000:8000"
+    networks:
+      - net  
+
+  app:
+    build: ./app
+    container_name: app
+    ports:
+      - "5001:8501"
+    networks:
+      - net   
+    depends_on:
+      - api
